@@ -16,16 +16,18 @@ type Transaction struct {
 func main() {
 
 	fields := graphql.Fields{
-		"hello": &graphql.Field{
+		"merchant": &graphql.Field{
 			Type: graphql.String,
 			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 
-				t := Transaction{
-					Merchant:    "Apple",
-					Description: "iPhone 10 screen repair",
-				}
+				return "Apple", nil
+			},
+		},
+		"description": &graphql.Field{
+			Type: graphql.String,
+			Resolve: func(p graphql.ResolveParams) (interface{}, error) {
 
-				return t, nil
+				return "iPhone 10", nil
 			},
 		},
 	}
