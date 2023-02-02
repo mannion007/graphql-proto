@@ -1,20 +1,51 @@
 ## GraphQL prototype
 
-### Request
+### Start Server
 ```
-curl -g \
--X POST \
--H "Content-Type: application/json" \
--d '{"query":"query{merchant,description}"}' \
-localhost:8080/graphql
+go run main.go
 ```
 
-### Response
+### Open GraphiQL
+```
+http://localhost:8080/graphql
+```
+
+### Example query
+```
+query {
+  transactions(offset: 5, limit: 5) {
+    merchant
+    description
+  }
+}
+```
+
+### Expected Response
 ```
 {
-	"data": {
-		"description": "iPhone 10",
-		"merchant": "Apple"
-	}
+  "data": {
+    "transactions": [
+      {
+        "description": "MacBook Pro 16",
+        "merchant": "Apple"
+      },
+      {
+        "description": "Nest Hub Max",
+        "merchant": "Google"
+      },
+      {
+        "description": "Galaxy Watch 3",
+        "merchant": "Samsung"
+      },
+      {
+        "description": "Xbox Series X",
+        "merchant": "Microsoft"
+      },
+      {
+        "description": "Echo Dot (4th Gen)",
+        "merchant": "Amazon"
+      }
+    ]
+  }
 }
 ```
